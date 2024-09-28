@@ -1,4 +1,4 @@
-package co.edu.uniquindio.gestor_contactos;
+package co.edu.uniquindio.gestorcontactos;
 
 public class Main {
     public static void main(String[] args) {
