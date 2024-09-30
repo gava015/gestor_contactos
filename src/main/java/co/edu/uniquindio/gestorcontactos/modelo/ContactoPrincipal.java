@@ -62,6 +62,34 @@ public class ContactoPrincipal {
         }
     }
 
+    public ArrayList<Contacto> filtrarListaContactos(String tipoFiltro, String valorFiltro) throws Exception{
+       if(tipoFiltro != "Todo" && valorFiltro.trim().equalsIgnoreCase("")) {
+           throw new Exception("Ingresa un valor para filtrar la lista");
+       }
+
+        ArrayList<Contacto> contactoTemporal = new ArrayList<>();
+        for (int i = 0; i < contactos.size(); i++) {
+            Contacto contacto = contactos.get(i);
+            switch (tipoFiltro) {
+                case "Nombre":
+                    if (contacto.getNombre().equalsIgnoreCase(valorFiltro.trim())) {
+                        contactoTemporal.add(contacto);
+                    }
+                    break;
+
+                case "Telefono":
+                    if (contacto.getTelefono().equalsIgnoreCase(valorFiltro.trim())) {
+                        contactoTemporal.add(contacto);
+                    }
+                    break;
+
+                default:
+                    return listarContactos();
+            }
+        }
+        return contactoTemporal;
+    }
+
     public ArrayList<Contacto> listarContactos() {
         System.out.println(contactos);
         return contactos;
@@ -69,8 +97,9 @@ public class ContactoPrincipal {
 
     public ArrayList<String> listarFiltro() {
         ArrayList<String> filtros = new ArrayList<>();
+        filtros.add("Todo");
         filtros.add("Nombre");
-        filtros.add("Teléfono");
+        filtros.add("Telefono");
         return filtros;
     }
 }

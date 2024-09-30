@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class InicioControlador implements Initializable {
@@ -50,6 +51,9 @@ public class InicioControlador implements Initializable {
 
     @FXML
     private DatePicker dpFechaCumpleanios;
+
+    @FXML
+    private TextField txtFiltro;
 
     private ObservableList<Contacto> observableList;
 
@@ -118,6 +122,23 @@ public class InicioControlador implements Initializable {
         }
     }
 
+    public void filtrarListaContactos(ActionEvent e) {
+        try {
+            String tipoFiltro = cbFiltro.getValue();
+            String valorFiltro = txtFiltro.getText();
+
+            if(tipoFiltro == "Todo") {
+                txtFiltro.clear();
+            }
+
+            ArrayList<Contacto> listaContactos = contactoPrincipal.filtrarListaContactos(tipoFiltro, valorFiltro);
+            observableList.setAll(listaContactos);
+
+        }catch (Exception ex) {
+            mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
     private void cargarContactoSeleccionado() {
         Contacto contacto = tablaContactos.getSelectionModel().getSelectedItem();
 
@@ -153,36 +174,6 @@ public class InicioControlador implements Initializable {
         dpFechaCumpleanios.setValue(null);
         cbFiltro.setValue("");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

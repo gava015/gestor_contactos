@@ -15,11 +15,11 @@
    <children>
       <AnchorPane layoutX="-12.0" layoutY="-14.0" prefHeight="603.0" prefWidth="853.0">
          <children>
-            <TableView fx:id="tablaContactos" layoutX="426.0" layoutY="123.0" prefHeight="418.0" prefWidth="375.0">
+            <TableView fx:id="tablaContactos" layoutX="426.0" layoutY="163.0" prefHeight="378.0" prefWidth="381.0">
               <columns>
                 <TableColumn id="colNombre" fx:id="colNombre" prefWidth="75.0" text="Nombre" />
-                <TableColumn id="colApellido" fx:id="colApellido" prefWidth="75.0" text="Apellido" />
-                  <TableColumn id="colTelefono" fx:id="colTelefono" prefWidth="75.0" text="Telefono" />
+                <TableColumn id="colApellido" fx:id="colApellido" prefWidth="107.0" text="Apellido" />
+                  <TableColumn id="colTelefono" fx:id="colTelefono" prefWidth="43.0" text="Telefono" />
                   <TableColumn id="colCumpleanios" fx:id="colCumpleanios" prefWidth="75.0" text="Cumpleaños" />
                   <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Correo" />
               </columns>
@@ -94,16 +94,21 @@
                   <InnerShadow />
                </effect>
             </Label>
-            <ComboBox id="cbFiltro" fx:id="cbFiltro" layoutX="425.0" layoutY="73.0" minWidth="159.0" prefHeight="31.0" prefWidth="159.0">
+            <ComboBox id="cbFiltro" fx:id="cbFiltro" layoutX="425.0" layoutY="73.0" minWidth="159.0" prefHeight="31.0" prefWidth="293.0">
                <effect>
                   <DropShadow />
                </effect>
             </ComboBox>
-            <TextField id="txtFiltro" fx:id="txtFiltro" layoutX="614.0" layoutY="73.0" minWidth="179.0" prefHeight="31.0" prefWidth="179.0">
+            <TextField id="txtFiltro" fx:id="txtFiltro" layoutX="427.0" layoutY="119.0" minWidth="179.0" prefHeight="31.0" prefWidth="293.0">
                <effect>
                   <DropShadow />
                </effect>
             </TextField>
+            <Button id="btnFiltrar" fx:id="btnFiltrar" layoutX="733.0" layoutY="119.0" onAction="#filtrarListaContactos" prefHeight="31.0" prefWidth="74.0" text="Filtrar">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
    </children>
