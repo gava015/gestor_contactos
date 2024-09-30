@@ -1,0 +1,6 @@
+co\edu\uniquindio\gestorcontactos\app\GestorContactosApp.class
+co\edu\uniquindio\gestorcontactos\controlador\InicioControlador.class
+co\edu\uniquindio\gestorcontactos\modelo\Contacto.class
+co\edu\uniquindio\gestorcontactos\modelo\Contacto$ContactoBuilder.class
+co\edu\uniquindio\gestorcontactos\Main.class
+co\edu\uniquindio\gestorcontactos\modelo\ContactoPrincipal.class
