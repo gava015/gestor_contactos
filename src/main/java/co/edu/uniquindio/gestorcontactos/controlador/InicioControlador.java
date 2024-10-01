@@ -35,6 +35,9 @@ public class InicioControlador implements Initializable {
     private TableColumn<Contacto, String> colCorreo;
 
     @FXML
+    private TableColumn<Contacto, String> colFoto;
+
+    @FXML
     private ComboBox<String> cbFiltro;
 
     @FXML
@@ -48,6 +51,9 @@ public class InicioControlador implements Initializable {
 
     @FXML
     private TextField txtCorreo;
+
+    @FXML
+    private TextField txtFoto;
 
     @FXML
     private DatePicker dpFechaCumpleanios;
@@ -69,13 +75,15 @@ public class InicioControlador implements Initializable {
             String apellido = txtApellido.getText();
             String telefono = txtTelefono.getText();
             String correo = txtCorreo.getText();
+            String foto = txtFoto.getText();
             LocalDate fechaCumpleanio = dpFechaCumpleanios.getValue();
 
-            contactoPrincipal.agregarContacto(nombre, apellido, telefono, correo, fechaCumpleanio);
+            contactoPrincipal.agregarContacto(nombre, apellido, telefono, correo, foto, fechaCumpleanio);
             mostrarAlerta("Contacto creado correctamente", Alert.AlertType.INFORMATION);
 
             limpiarFormulario();
             actualizarTabla();
+
         } catch (Exception ex) {
             mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
             tablaContactos.setItems(FXCollections.observableArrayList(contactoPrincipal.listarContactos()));
@@ -85,21 +93,27 @@ public class InicioControlador implements Initializable {
     public void actualizarContacto(ActionEvent e) {
         Contacto contactoSeleccionado = tablaContactos.getSelectionModel().getSelectedItem();
 
-        if (contactoSeleccionado != null) {
-            String contactoId = contactoSeleccionado.getId();
-            String nombre = txtNombre.getText();
-            String apellido = txtApellido.getText();
-            String telefono = txtTelefono.getText();
-            String correo = txtCorreo.getText();
-            LocalDate fechaCumpleanio = dpFechaCumpleanios.getValue();
+        try {
+            if (contactoSeleccionado != null) {
+                String contactoId = contactoSeleccionado.getId();
+                String nombre = txtNombre.getText();
+                String apellido = txtApellido.getText();
+                String telefono = txtTelefono.getText();
+                String correo = txtCorreo.getText();
+                String foto = txtFoto.getText();
+                LocalDate fechaCumpleanio = dpFechaCumpleanios.getValue();
 
-            contactoPrincipal.actualizarContacto(contactoId, nombre, apellido, telefono, correo, fechaCumpleanio);
-            mostrarAlerta("Contacto actualizado correctamente", Alert.AlertType.INFORMATION);
+                contactoPrincipal.actualizarContacto(contactoId, nombre, apellido, telefono, correo,foto, fechaCumpleanio);
+                mostrarAlerta("Contacto actualizado correctamente", Alert.AlertType.INFORMATION);
 
-            limpiarFormulario();
-            actualizarTabla();
-        } else {
-            mostrarAlerta("No se ha seleccionado ningún contacto para actualizar", Alert.AlertType.WARNING);
+                limpiarFormulario();
+                actualizarTabla();
+            } else {
+                mostrarAlerta("No se ha seleccionado ningún contacto para actualizar", Alert.AlertType.WARNING);
+            }
+
+        }catch (Exception ex) {
+            mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -148,6 +162,7 @@ public class InicioControlador implements Initializable {
             txtTelefono.setText(contacto.getTelefono());
             dpFechaCumpleanios.setValue(contacto.getCumpleAnios());
             txtCorreo.setText(contacto.getCorreo());
+            txtFoto.setText(contacto.getFoto());
         } else {
             limpiarFormulario();
         }
@@ -171,6 +186,7 @@ public class InicioControlador implements Initializable {
         txtTelefono.clear();
         txtCorreo.clear();
         txtNombre.clear();
+        txtFoto.clear();
         dpFechaCumpleanios.setValue(null);
         cbFiltro.setValue("");
     }
@@ -182,6 +198,7 @@ public class InicioControlador implements Initializable {
         colTelefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
         colCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
         colCumpleanios.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCumpleAnios().toString()));
+        colFoto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFoto()));
         cbFiltro.setItems(FXCollections.observableArrayList(contactoPrincipal.listarFiltro()));
 
         observableList = FXCollections.observableArrayList();

@@ -18,4 +18,5 @@ public class Contacto {
     private String correo;
     private LocalDate cumpleAnios;
     private String filtroTabla;
+    private String foto;
 }

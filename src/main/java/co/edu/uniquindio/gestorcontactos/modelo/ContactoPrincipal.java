@@ -12,22 +12,31 @@ public class ContactoPrincipal {
         contactos = new ArrayList<>();
     }
 
-    public void agregarContacto(String nombre, String apellido, String telefono, String correo, LocalDate cumpleAnios)
+    public void agregarContacto(String nombre, String apellido, String telefono, String correo, String foto, LocalDate cumpleAnios)
             throws Exception {
+
         if (nombre == null || nombre.trim().isEmpty() ||
                 apellido == null || apellido.trim().isEmpty() ||
                 telefono == null || telefono.trim().isEmpty() ||
+                foto == null || foto.trim().isEmpty() ||
                 correo == null || correo.trim().isEmpty()) {
 
             throw new Exception("Todos los campos son obligatorios");
 
         } else {
+
+            boolean existeContacto = buscarContactoPorCorreo(correo);
+            if (existeContacto) {
+                throw new Exception("Ya existe el contacto registrado.");
+            }
+
             Contacto contacto = Contacto.builder()
                     .id(String.valueOf(UUID.randomUUID()))
                     .nombre(nombre)
                     .apellido(apellido)
                     .telefono(telefono)
                     .correo(correo)
+                    .foto(foto)
                     .cumpleAnios(cumpleAnios)
                     .build();
 
@@ -35,19 +44,42 @@ public class ContactoPrincipal {
         }
     }
 
+    private boolean buscarContactoPorCorreo(String correo) {
+        for(int i=0; i < contactos.size(); i++){
+            String contactoBuscado = contactos.get(i).getCorreo();
+            if(contactoBuscado.equalsIgnoreCase(correo)) {
+               return true;
+            }
+        }
+        return false;
+    }
+
     public void actualizarContacto(String contactoId, String nombre, String apellido, String telefono, String correo,
-                               LocalDate cumpleAnios) {
-        for (int i = 0; i < contactos.size(); i++) {
-            if(contactos.get(i).getId().equals(contactoId) ){
-                contactos.set(i, Contacto.builder()
-                        .id(String.valueOf(UUID.randomUUID()))
-                        .nombre(nombre)
-                        .apellido(apellido)
-                        .telefono(telefono)
-                        .correo(correo)
-                        .cumpleAnios(cumpleAnios)
-                        .build());
-                break;
+                                   String foto, LocalDate cumpleAnios) throws Exception{
+
+        if (nombre == null || nombre.trim().isEmpty() ||
+                apellido == null || apellido.trim().isEmpty() ||
+                telefono == null || telefono.trim().isEmpty() ||
+                foto == null || foto.trim().isEmpty() ||
+                correo == null || correo.trim().isEmpty()) {
+
+            throw new Exception("Todos los campos son obligatorios");
+
+        } else {
+
+            for (int i = 0; i < contactos.size(); i++) {
+                if(contactos.get(i).getId().equals(contactoId) ){
+                    contactos.set(i, Contacto.builder()
+                            .id(String.valueOf(UUID.randomUUID()))
+                            .nombre(nombre)
+                            .apellido(apellido)
+                            .telefono(telefono)
+                            .correo(correo)
+                            .foto(foto)
+                            .cumpleAnios(cumpleAnios)
+                            .build());
+                    break;
+                }
             }
         }
     }
