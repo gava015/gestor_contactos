@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="603.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.gestorcontactos.controlador.InicioControlador">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-14.0" prefHeight="603.0" prefWidth="930.0">
+         <children>
+            <TableView fx:id="tablaContactos" layoutX="426.0" layoutY="163.0" prefHeight="378.0" prefWidth="452.0">
+              <columns>
+                <TableColumn id="colNombre" fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                <TableColumn id="colApellido" fx:id="colApellido" prefWidth="107.0" text="Apellido" />
+                  <TableColumn id="colTelefono" fx:id="colTelefono" prefWidth="43.0" text="Telefono" />
+                  <TableColumn id="colCumpleanios" fx:id="colCumpleanios" prefWidth="75.0" text="Cumpleaños" />
+                  <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Correo" />
+                  <TableColumn id="colFoto" fx:id="colFoto" prefWidth="75.0" text="Foto" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnActualizarContacto" layoutX="504.0" layoutY="558.0" onAction="#actualizarContacto" text="Actualizar contacto" textFill="#222020">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button fx:id="btnElininarContacto" layoutX="665.0" layoutY="558.0" onAction="#eliminarContacto" text="Eliminar contacto" textFill="#222020">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Label layoutX="38.0" layoutY="103.0" text="Apellido:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label layoutX="37.0" layoutY="166.0" text="Telefono:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label layoutX="37.0" layoutY="46.0" text="Nombre:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <TextField id="txtNombre" fx:id="txtNombre" layoutX="121.0" layoutY="41.0" minWidth="198.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <TextField id="txtApellido" fx:id="txtApellido" layoutX="121.0" layoutY="103.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <TextField id="txtTelefono" fx:id="txtTelefono" layoutX="121.0" layoutY="161.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <TextField id="txtCorreo" fx:id="txtCorreo" layoutX="121.0" layoutY="220.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+
+            <TextField id="txtFoto" fx:id="txtFoto" layoutX="121.0" layoutY="276.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+
+            <DatePicker id="dpFechaCumpleanios" fx:id="dpFechaCumpleanios" layoutX="134.0" layoutY="337.0" prefHeight="31.0" prefWidth="192.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </DatePicker>
+
+            <Label layoutX="37.0" layoutY="342.0" text="Cumpleaños:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label layoutX="43.0" layoutY="220.0" text="Correo:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+
+            <Button id="btnAgregarContacto" fx:id="btnCrearContacto" layoutX="190.0" layoutY="400.0" onAction="#crearContacto" text="Agregar contacto">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Label layoutX="425.0" layoutY="46.0" text="Buscar por:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <ComboBox id="cbFiltro" fx:id="cbFiltro" layoutX="425.0" layoutY="73.0" minWidth="159.0" prefHeight="31.0" prefWidth="293.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <TextField id="txtFiltro" fx:id="txtFiltro" layoutX="427.0" layoutY="119.0" minWidth="179.0" prefHeight="31.0" prefWidth="293.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <Button id="btnFiltrar" fx:id="btnFiltrar" layoutX="733.0" layoutY="119.0" onAction="#filtrarListaContactos" prefHeight="31.0" prefWidth="74.0" text="Filtrar">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Label layoutX="40.0" layoutY="281.0" text="Url Foto:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
