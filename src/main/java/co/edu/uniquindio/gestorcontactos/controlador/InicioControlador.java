@@ -9,6 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -103,7 +106,7 @@ public class InicioControlador implements Initializable {
                 String foto = txtFoto.getText();
                 LocalDate fechaCumpleanio = dpFechaCumpleanios.getValue();
 
-                contactoPrincipal.actualizarContacto(contactoId, nombre, apellido, telefono, correo,foto, fechaCumpleanio);
+                contactoPrincipal.actualizarContacto(contactoId, nombre, apellido, telefono, correo, foto, fechaCumpleanio);
                 mostrarAlerta("Contacto actualizado correctamente", Alert.AlertType.INFORMATION);
 
                 limpiarFormulario();
@@ -112,7 +115,7 @@ public class InicioControlador implements Initializable {
                 mostrarAlerta("No se ha seleccionado ningún contacto para actualizar", Alert.AlertType.WARNING);
             }
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -141,14 +144,14 @@ public class InicioControlador implements Initializable {
             String tipoFiltro = cbFiltro.getValue();
             String valorFiltro = txtFiltro.getText();
 
-            if(tipoFiltro == "Todo") {
+            if (tipoFiltro == "Todo") {
                 txtFiltro.clear();
             }
 
             ArrayList<Contacto> listaContactos = contactoPrincipal.filtrarListaContactos(tipoFiltro, valorFiltro);
             observableList.setAll(listaContactos);
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -198,7 +201,6 @@ public class InicioControlador implements Initializable {
         colTelefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
         colCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
         colCumpleanios.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCumpleAnios().toString()));
-        colFoto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFoto()));
         cbFiltro.setItems(FXCollections.observableArrayList(contactoPrincipal.listarFiltro()));
 
         observableList = FXCollections.observableArrayList();
@@ -207,6 +209,24 @@ public class InicioControlador implements Initializable {
 
         tablaContactos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             cargarContactoSeleccionado();
+        });
+
+        colFoto.setCellValueFactory(new PropertyValueFactory<>("foto"));
+        colFoto.setCellFactory(cell -> new TableCell<>() {
+
+            final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(String s, boolean b) {
+                super.updateItem(s, b);
+                if (s != null) {
+                    Image image = new Image(s, 50, 50, true, true);
+                    imageView.setImage(image);
+                    setGraphic(imageView);
+                } else {
+                    setGraphic(null);
+                }
+            }
         });
     }
 }

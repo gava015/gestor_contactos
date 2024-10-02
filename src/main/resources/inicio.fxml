@@ -50,6 +50,11 @@
                   <InnerShadow />
                </effect>
             </Label>
+            <TextField id="txtNombre" fx:id="txtNombre" layoutX="121.0" layoutY="41.0" minWidth="198.0" prefHeight="31.0" prefWidth="205.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
             <TextField id="txtApellido" fx:id="txtApellido" layoutX="121.0" layoutY="103.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
                <effect>
                   <DropShadow />
@@ -60,31 +65,35 @@
                   <DropShadow />
                </effect>
             </TextField>
-            <Label layoutX="37.0" layoutY="342.0" text="Cumpleaños:">
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </Label>
-            <DatePicker id="dpFechaCumpleanios" fx:id="dpFechaCumpleanios" layoutX="134.0" layoutY="337.0" prefHeight="31.0" prefWidth="192.0">
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </DatePicker>
-            <Label layoutX="43.0" layoutY="220.0" text="Correo:">
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </Label>
             <TextField id="txtCorreo" fx:id="txtCorreo" layoutX="121.0" layoutY="220.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
                <effect>
                   <DropShadow />
                </effect>
             </TextField>
-            <TextField id="txtNombre" fx:id="txtNombre" layoutX="121.0" layoutY="41.0" minWidth="198.0" prefHeight="31.0" prefWidth="205.0">
+
+            <TextField id="txtFoto" fx:id="txtFoto" layoutX="121.0" layoutY="276.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
                <effect>
                   <DropShadow />
                </effect>
             </TextField>
+
+            <DatePicker id="dpFechaCumpleanios" fx:id="dpFechaCumpleanios" layoutX="134.0" layoutY="337.0" prefHeight="31.0" prefWidth="192.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </DatePicker>
+
+            <Label layoutX="37.0" layoutY="342.0" text="Cumpleaños:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label layoutX="43.0" layoutY="220.0" text="Correo:">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+
             <Button id="btnAgregarContacto" fx:id="btnCrearContacto" layoutX="190.0" layoutY="400.0" onAction="#crearContacto" text="Agregar contacto">
                <effect>
                   <InnerShadow />
@@ -115,11 +124,6 @@
                   <InnerShadow />
                </effect>
             </Label>
-            <TextField id="txtFoto" fx:id="txtFoto" layoutX="121.0" layoutY="276.0" minWidth="205.0" prefHeight="31.0" prefWidth="205.0">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </TextField>
          </children>
       </AnchorPane>
    </children>

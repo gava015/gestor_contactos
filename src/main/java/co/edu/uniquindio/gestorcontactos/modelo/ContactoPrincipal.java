@@ -3,6 +3,7 @@ package co.edu.uniquindio.gestorcontactos.modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class ContactoPrincipal {
 
@@ -15,7 +16,7 @@ public class ContactoPrincipal {
     public void agregarContacto(String nombre, String apellido, String telefono, String correo, String foto, LocalDate cumpleAnios)
             throws Exception {
 
-        if (nombre == null || nombre.trim().isEmpty() ||
+        if (nombre == null || nombre.isBlank() ||
                 apellido == null || apellido.trim().isEmpty() ||
                 telefono == null || telefono.trim().isEmpty() ||
                 foto == null || foto.trim().isEmpty() ||
@@ -24,6 +25,20 @@ public class ContactoPrincipal {
             throw new Exception("Todos los campos son obligatorios");
 
         } else {
+
+            if(!validarCorreo(correo)){
+                throw new Exception("El correo no es válido");
+            }
+
+
+            if(!validarTelefono((telefono))){
+                throw new Exception("El telefono no es válido");
+            }
+
+            if(!validarUrlFoto((foto))){
+                throw new Exception("La URL no es válida");
+            }
+
 
             boolean existeContacto = buscarContactoPorCorreo(correo);
             if (existeContacto) {
@@ -42,6 +57,7 @@ public class ContactoPrincipal {
 
             contactos.add(contacto);
         }
+
     }
 
     private boolean buscarContactoPorCorreo(String correo) {
@@ -123,7 +139,6 @@ public class ContactoPrincipal {
     }
 
     public ArrayList<Contacto> listarContactos() {
-        System.out.println(contactos);
         return contactos;
     }
 
@@ -133,5 +148,27 @@ public class ContactoPrincipal {
         filtros.add("Nombre");
         filtros.add("Telefono");
         return filtros;
+    }
+
+
+    public boolean validarCorreo(String correo) throws Exception{
+        if (Pattern.matches("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}", correo)) {
+           return true;
+        }
+        return false;
+    }
+
+    public boolean validarUrlFoto(String foto){
+        if(Pattern.matches("^(https?:\\/\\/)?([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+)(:[0-9]{1,5})?(\\/.*)?$",foto)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validarTelefono(String telefono) {
+       if (Pattern.matches("[0-9]*", telefono)) {
+            return true;
+       }
+        return false;
     }
 }
